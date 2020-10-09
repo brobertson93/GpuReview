@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all" href="HomepageStyles.css" th:href="@{../HomepageStyle.css}">
+</head>
+
+
+<body>
+<header>
+
+</header>
+<nav>
+    <ul>
+        <a href="index.html"><li>Home</li></a>
+        <a href="/gpus"><li>GPU List</li></a>
+    </ul>
+</nav>
+<main>
+    <h1 class="label">Nvidia Cards</h1>
+    <ul class="gpuDisplay" th:each="gpu: ${gpusModel}">
+
+        <li th:if="${gpu.reviewCategory == 'Nvidia'}"><a th:href="@{/gpu(id=${gpu.id})}" th:text="${gpu.name}"></a></li>
+       <li> <img  th:if="${gpu.reviewCategory == 'Nvidia'}" th:src="${gpu.getImageUrl()}"/></li>
+
+
+
+
+
+
+    </ul>
+    <h1 class ="label">AMD Cards</h1>
+    <ul class="gpuDisplay" th:each="gpu: ${gpusModel}">
+
+        <li th:if="${gpu.reviewCategory == 'AMD'}"> <a th:href="@{/gpu(id=${gpu.id})}" th:text="${gpu.name}"></a></li>
+        <li><img  th:if="${gpu.reviewCategory == 'AMD'}" th:src="${gpu.getImageUrl()}"/></li>
+
+
+
+
+
+
+    </ul>
+
+
+</main>
+
+</body>
+</html>
